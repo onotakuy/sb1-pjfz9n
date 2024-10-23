@@ -12,28 +12,35 @@ function App() {
   const [location, setLocation] = useState<string>('')
 
   useEffect(() => {
-    // Simulating API calls for products and recommendations
     fetchProducts()
     fetchRecommendations()
-  }, [location])
+  }, []) // 依存配列を空にする
 
   const fetchProducts = () => {
     // Simulated API call
-    const dummyProducts: Product[] = [
-      { id: 1, name: 'Smartphone', price: 599, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
-      { id: 2, name: 'Laptop', price: 999, image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
-      { id: 3, name: 'Headphones', price: 199, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
-    ]
-    setProducts(dummyProducts)
+    try {
+      const dummyProducts: Product[] = [
+        { id: 1, name: 'Smartphone', price: 599, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
+        { id: 2, name: 'Laptop', price: 999, image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
+        { id: 3, name: 'Headphones', price: 199, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
+      ]
+      setProducts(dummyProducts)
+    } catch (error) {
+      console.error('製品の取得中にエラーが発生しました:', error)
+    }
   }
 
   const fetchRecommendations = () => {
-    // Simulated API call for recommendations based on location
-    const dummyRecommendations: Product[] = [
-      { id: 4, name: 'Smart Watch', price: 299, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
-      { id: 5, name: 'Wireless Earbuds', price: 149, image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
-    ]
-    setRecommendations(dummyRecommendations)
+    // Simulated API call for recommendations
+    try {
+      const dummyRecommendations: Product[] = [
+        { id: 4, name: 'Smart Watch', price: 299, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
+        { id: 5, name: 'Wireless Earbuds', price: 149, image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80' },
+      ]
+      setRecommendations(dummyRecommendations)
+    } catch (error) {
+      console.error('おすすめ商品の取得中にエラーが発生しました:', error)
+    }
   }
 
   return (
@@ -61,5 +68,9 @@ function App() {
     </div>
   )
 }
+
+
+
+
 
 export default App
